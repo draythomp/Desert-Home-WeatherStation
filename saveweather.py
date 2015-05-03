@@ -79,8 +79,8 @@ def recordInDatabase():
 def getDailys():
     # get maxs, mins and such out of the database to pick
     # up where we left off in case of failure and restart.
-    # Midnight is considered the first instant of today.
-    m = midnight()  # midnight today
+    # Midnight yesterday is considered the first instant of today.
+    m = midnight(1)  # This time was recorded as the last reading yesterday
     n = dbTimeStamp()
     dbconn = mdb.connect(host=dbHost, user=dbUser, passwd=dbPassword, db=dbName)
     c = dbconn.cursor()

@@ -84,24 +84,24 @@ def showData():
     # fill in the Weather dictionary
     collectWeather()
     # now compose the screen
-    returnString += "Temperature on fence: " + Weather["currentOutsideTemp"] + \
+    returnString += "Temperature on fence: " + str(Weather["currentOutsideTemp"]) + \
         "<br />"
-    returnString += "Temperature on roof: " + Weather["roofTemperature"] + \
+    returnString += "Temperature on roof: " + str(Weather["roofTemperature"]) + \
         "<br />"
-    returnString += "Wind Speed: " + Weather["windSpeed"] + "<br />"
+    returnString += "Wind Speed: " + str(Weather["windSpeed"]) + "<br />"
     returnString += "Wind Direction: " + Weather["windDirectionC"] + \
         " (" + Weather["windDirectionD"] + ")" + "<br />"
-    returnString += "Humidity: " + Weather["humidity"] + "%" + "<br />"
-    returnString += "Barometer: " + Weather["currentBarometric"] + \
+    returnString += "Humidity: " + str(Weather["humidity"]) + "%" + "<br />"
+    returnString += "Barometer: " + str(Weather["currentBarometric"]) + \
         " mbar" + "<br />"
     returnString += "<br />"
-    returnString += "Midnight Barometer Reading: " + Weather["midnightBarometric"] + \
+    returnString += "Midnight Barometer Reading: " + str(Weather["midnightBarometric"]) + \
         " mbar" + "<br />"
-    returnString += "High Temperature Today: " + Weather["maxTempToday"] + \
+    returnString += "High Temperature Today: " + str(Weather["maxTempToday"]) + \
         "<br />"
-    returnString += "Low Temperature Today: " + Weather["minTempToday"] + \
+    returnString += "Low Temperature Today: " + str(Weather["minTempToday"]) + \
         "<br />"
-    returnString += "Highest Wind Speed Today: " + Weather["maxWindSpeedToday"] + \
+    returnString += "Highest Wind Speed Today: " + str(Weather["maxWindSpeedToday"]) + \
         "<br />"
     returnString += "Rainfall Today: " + Weather["rainToday"] + \
         " inch" + "<br />"

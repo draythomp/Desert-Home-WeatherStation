@@ -182,11 +182,27 @@ while True:
         if buff.endswith('\n'):
             try:
                 data = json.loads(buff[:-1])
-            except ValueError:
-                lprint("Input from receive wasn't JSON");
-                lprint(buff);
+            except ValueError as err:
+                lprint(err)
+                lprint("The buffer:")
+                lprint(buff)
                 buff = ''
                 continue
+            # First I'm going to check the incoming to be sure
+            # the radio didn't decode the wrong sensor head, or
+            # a different device didn't slip something past the
+            # decoder
+            if data["sensorId"]["SID"] != '92':
+                lprint("Wrong sensor ID = ", data["sensorId"]["SID"])
+                buff =''
+                continue
+            if data["channel"]["CH"] != 'A':
+                lprint("Wrong Channel = ", data["channel"]["CH"])
+                buff =''
+                continue
+            if data["battLevel"]["BAT"] != '7':
+                 lprint("Check Battery = ", data["battLevel"]["BAT"])
+           
             # Now, fill in the Weather dictionary for use by
             # everything else
             # beginning with the five readings from the sensor head

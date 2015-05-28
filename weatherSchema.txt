@@ -1,0 +1,124 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.13
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: May 29, 2015 at 12:03 AM
+-- Server version: 5.1.36
+-- PHP Version: 5.3.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `WeatherStation`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `barometer`
+--
+
+CREATE TABLE IF NOT EXISTS `barometer` (
+  `reading` float DEFAULT NULL,
+  `utime` varchar(10) NOT NULL DEFAULT '',
+  `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `utime` (`utime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daily`
+--
+
+CREATE TABLE IF NOT EXISTS `daily` (
+  `barometer` float DEFAULT NULL,
+  `hightemp` float DEFAULT NULL,
+  `lowtemp` float DEFAULT NULL,
+  `windhigh` float DEFAULT NULL,
+  `raincount` smallint(6) DEFAULT NULL,
+  `utime` varchar(10) NOT NULL DEFAULT '',
+  `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `note` text,
+  UNIQUE KEY `utime` (`utime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Holds daily highs, lows etc';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ftemperature`
+--
+
+CREATE TABLE IF NOT EXISTS `ftemperature` (
+  `reading` float DEFAULT NULL,
+  `utime` varchar(10) NOT NULL,
+  `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `utime` (`utime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `humidity`
+--
+
+CREATE TABLE IF NOT EXISTS `humidity` (
+  `reading` float DEFAULT NULL,
+  `utime` varchar(10) NOT NULL,
+  `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `utime` (`utime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raincounter`
+--
+
+CREATE TABLE IF NOT EXISTS `raincounter` (
+  `reading` smallint(6) DEFAULT NULL,
+  `utime` varchar(10) NOT NULL,
+  `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `utime` (`utime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rtemperature`
+--
+
+CREATE TABLE IF NOT EXISTS `rtemperature` (
+  `reading` float DEFAULT NULL,
+  `utime` varchar(10) NOT NULL,
+  `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `utime` (`utime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wind`
+--
+
+CREATE TABLE IF NOT EXISTS `wind` (
+  `speed` float DEFAULT NULL,
+  `directionc` text,
+  `directiond` text,
+  `utime` varchar(10) NOT NULL,
+  `rdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `utime` (`utime`),
+  KEY `rdate` (`rdate`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

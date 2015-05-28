@@ -193,15 +193,15 @@ while True:
             # a different device didn't slip something past the
             # decoder
             if data["sensorId"]["SID"] != '92':
-                lprint("Wrong sensor ID = ", data["sensorId"]["SID"])
+                lprint("Error, Wrong sensor ID = ", data["sensorId"]["SID"])
                 buff =''
                 continue
             if data["channel"]["CH"] != 'A':
-                lprint("Wrong Channel = ", data["channel"]["CH"])
+                lprint("Error, Wrong Channel = ", data["channel"]["CH"])
                 buff =''
                 continue
             if data["battLevel"]["BAT"] != '7':
-                 lprint("Check Battery = ", data["battLevel"]["BAT"])
+                 lprint("Error, Check Battery = ", data["battLevel"]["BAT"])
            
             # Now, fill in the Weather dictionary for use by
             # everything else

@@ -216,6 +216,9 @@ while True:
             # Now update max wind speed (temps are taken from another sensor)
             if (Weather["maxWindSpeedToday"] == "default"):
                 Weather["maxWindSpeedToday"] = data["windSpeed"]["WS"]
+            if (Weather["maxWindSpeedToday"] is None):
+                Weather["maxWindSpeedToday"] = data["windSpeed"]["WS"]
+                
             if(float(Weather["maxWindSpeedToday"]) < float(data["windSpeed"]["WS"])):
                 Weather["maxWindSpeedToday"] = data["windSpeed"]["WS"]
             # and start the buffer over from scratch

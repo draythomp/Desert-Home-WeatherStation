@@ -1,0 +1,12 @@
+[Unit]
+Description=saveweather server for jessie
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c '/usr/local/bin/rtl_433 -f 433.916e6 -R9 2>> /var/log/house/weather.log | /home/pi/src/weatherstation/saveweather.py  >> /var/log/house/weather.log 2>&1'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,9 @@
+/var/log/house/*.log {
+        daily
+        missingok
+        copytruncate
+        rotate 3
+        nocompress
+        create 666 root root
+}
+

@@ -1,0 +1,5 @@
+The .conf files go into /etc/systemd/system/ so systemd can read them.
+
+They are the configuration files for starting and restarting the weather saving process and the processs that gives the saved weather data. 
+
+The file 'house' goes into /etc/logrotate.d It controls the log rotation of the log files in the /var/log/house directory which has to be created and permissions set to world writable (a+r+w)

@@ -41,7 +41,7 @@ def collectWeather():
             
     c.execute \
         ("select reading from humidity where utime = "
-            "(select max(utime) from wind);")
+            "(select max(utime) from humidity);")
     Weather["humidity"] = c.fetchone()[0]
     
     c.execute("select reading from barometer where utime = "

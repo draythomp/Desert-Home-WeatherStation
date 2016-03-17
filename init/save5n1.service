@@ -1,0 +1,12 @@
+[Unit]
+Description=save5n1 server for jessie
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c '/usr/local/bin/rtl_433 -f 433.916e6 -R9 2>> /var/log/house/save5n1.log | /home/pi/src/weatherstation/save5n1.py  >> /var/log/house/save5n1.log 2>&1'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

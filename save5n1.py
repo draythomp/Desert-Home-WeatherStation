@@ -201,7 +201,7 @@ while True:
                 buff =''
                 continue
             if data["battLevel"]["BAT"] != '7':
-                 lprint("Error, Check Battery = ", data["battLevel"]["BAT"])
+                lprint("Error, Check Battery = ", data["battLevel"]["BAT"])
            
             # Now, fill in the Weather dictionary for use by
             # everything else

@@ -49,8 +49,11 @@ def collectWeather():
     Weather["currentBarometric"] = c.fetchone()[0]
     
     # Get the cumulative readings
-    c.execute("select barometer from daily where utime = %s;",
-        (midnight(1),))
+    #c.execute("select barometer from daily where utime = %s;",
+    #    (midnight(1),))
+    c.execute("select reading from barometer "
+        "where rdate > date_format(now(), '%Y-%m-%d 00:00:00')"
+        "order by rdate asc limit 1;"
     Weather["midnightBarometric"] = c.fetchone()[0]
     
     # now get the rest of the daily items

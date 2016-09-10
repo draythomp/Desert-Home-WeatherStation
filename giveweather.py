@@ -53,28 +53,36 @@ def collectWeather():
     #    (midnight(1),))
     c.execute("select reading from barometer "
         "where rdate > date_format(now(), '%Y-%m-%d 00:00:00')"
-        "order by rdate asc limit 1;"
+        "order by rdate asc limit 1;")
     Weather["midnightBarometric"] = c.fetchone()[0]
     
     # now get the rest of the daily items
-    c.execute("select windhigh from daily where utime = %s;", \
-        (midnight(),))
+    c.execute("SELECT max(speed) FROM wind "
+            "where rdate > date_sub(now(), interval 24 hour) "
+            "ORDER BY `rdate` asc limit 1"
+        )
     Weather["maxWindSpeedToday"] = c.fetchone()[0]
     
-    c.execute("select hightemp from daily where utime = %s;",\
-        (midnight(),))
+    c.execute("SELECT max(reading) FROM rtemperature "
+            "where rdate > date_sub(now(), interval 24 hour) "
+            "ORDER BY `rdate` asc limit 1"
+        )
     Weather["maxTempToday"] = c.fetchone()[0]
     
-    c.execute("select lowtemp from daily where utime = %s;",\
-        (midnight(),))
+    c.execute("SELECT min(reading) FROM rtemperature "
+            "where rdate > date_sub(now(), interval 24 hour) "
+            "ORDER BY `rdate` asc limit 1"
+        )
     Weather["minTempToday"] = c.fetchone()[0]
     
-    c.execute("select raincount from daily where utime = %s;",\
-        (midnight(1),))
+    c.execute("SELECT reading, rdate FROM `raincounter` "
+            "where rdate > date_sub(now(), interval 24 hour) "
+            "ORDER BY `rdate` asc limit 1"
+        )
     startCount = c.fetchone()[0]
     
-    c.execute("select reading  from raincounter where utime = "
-            "(select max(utime) from raincounter);")
+    c.execute("select reading  from raincounter where rdate = "
+            "(select max(rdate) from raincounter);")
     endCount = c.fetchone()[0]
     
     Weather["rainToday"] = str((float(endCount) - float(startCount)) * 0.01)
